@@ -16,15 +16,30 @@ class _MyHomePageState extends State<MyHomePage> {
   final _questions = [
     {
       'question': "How do you feel today?",
-      'answers': ['Great!', 'Good.', 'Okay...', 'Meh.', 'Bad!'],
+      'answers': [
+        {'text': 'Great!', 'score': 10},
+        {'text': 'Good.', 'score': 8},
+        {'text': 'Okay...', 'score': 6},
+        {'text': 'Meh.', 'score': 4},
+        {'text': 'Bad!', 'score': 2}
+      ],
     },
     {
       'question': "What is your Favorite animal?",
-      'answers': ['snail', 'cat', 'dog', 'bear', 'hummingbird']
+      'answers': [
+        {'text': 'snail', 'score': 10},
+        {'text': 'cat', 'score': 8},
+        {'text': 'dog', 'score': 6},
+        {'text': 'bear', 'score': 4},
+        {'text': 'hummingbird', 'score': 2}
+      ]
     }
   ];
+  
   int _questionsIndex = 0;
-  void _answerQuestion() {
+  var _totalScore = 0;
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       _questionsIndex++;
       print('This worked!');
@@ -51,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionsIndex,
               )
-            : Result(_resetQuiz),
+            : Result(_resetQuiz, _totalScore),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
