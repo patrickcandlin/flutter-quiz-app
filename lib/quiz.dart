@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import './question.dart';
 import './answer.dart';
@@ -8,21 +7,24 @@ class Quiz extends StatelessWidget {
   final int questionIndex;
   final Function answerQuestion;
 
-  Quiz({@required this.answerQuestion, @required this.questions, @required this.questionIndex});
+  Quiz(
+      {@required this.answerQuestion,
+      @required this.questions,
+      @required this.questionIndex});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-          children: <Widget>[
-            Question(questions[questionIndex]['question']),
-            ...(questions[questionIndex]['answers'] as List<String>)
-                .map((answer) {
-              return Answer(
-                answerText: answer,
-                selectionHandler: answerQuestion,
-              );
-            })
-          ],
-        );
+      children: <Widget>[
+        Question(questions[questionIndex]['question']),
+        ...(questions[questionIndex]['answers'] as List<Map<String, Object>>)
+            .map((answer) {
+          return Answer(
+            answerText: answer['text'],
+            selectionHandler: () => answerQuestion(answer['score']),
+          );
+        })
+      ],
+    );
   }
 }
