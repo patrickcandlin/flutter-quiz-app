@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _resetQuiz() {
     print('pressed');
     setState(() {
+      _totalScore = 0;
       _questionsIndex = 0;
       print(_questionsIndex);
     });

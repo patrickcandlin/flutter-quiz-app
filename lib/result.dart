@@ -6,11 +6,11 @@ class Result extends StatelessWidget {
 
   Result(this.resetQuiz, this.resultScore);
   String get resultPhrase {
-    var resultText = 'You did it!';
+    var resultText = 'You did it! $resultScore';
     if (resultScore <= 8) {
-      resultText = 'someting ';
+      resultText = 'someting $resultScore';
     } else {
-      resultText = 'fish';
+      resultText = 'fish $resultScore';
     }
     return resultText;
   }
